@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>用户中心 - 首页</title>
+  <title>用户中心 - 付款方式</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -112,60 +112,39 @@
 <body>
   <div class="sidebar">
     <h2>Wonderlus用户中心</h2>
-    <a href="index.html" class="nav-item active">🏠<span>账户</span></a>
+    <a href="index.html" class="nav-item">🏠<span>账户</span></a>
     <a href="info.html" class="nav-item">👤<span>您的信息</span></a>
     <a href="subscription.html" class="nav-item">💳<span>订阅</span></a>
     <a href="security.html" class="nav-item">🔒<span>安全</span></a>
     <a href="privacy.html" class="nav-item">🕵️<span>隐私</span></a>
-    <a href="payment.html" class="nav-item">💰<span>付款选项</span></a>
+    <a href="payment.html" class="nav-item  active">💰<span>付款选项</span></a>
     <a href="payment-his.html" class="nav-item">📜<span>历史记录</span></a>
   </div>
 
   <div class="content">
     <div class="notice">⚠️ 用户中心目前处于Beta测试中，一切内容不代表最终结果</div>
-    <div class="notice">Ad：订阅Wonderlus+ 以享有更多优惠</div>
 
     <div class="module open">
       <div class="module-header" onclick="toggleModule(this)">
-        📦 Wonderlus钱包
+        📦 Wonderlus订阅类
         <span>▼</span>
       </div>
       <div class="module-content">
-        <p>你的余额：0.00 MYR</p>
-        <p>若要添加余额，请联络alone102403</p>
-      </div>
-    </div>
-
-    <div class="module open">
-      <div class="module-header" onclick="toggleModule(this)">
-        ☁️ Honkai: Star Rail订阅
-        <span>▶</span>
-      </div>
-      <div class="module-content">
-        <p>00:00 23/5/2025 - 23:59 23/6/2025</p>
+        <p>TnG e-wallet</p>
+        <p>Cash Payment</p>
       </div>
     </div>
 
     <div class="module">
       <div class="module-header" onclick="toggleModule(this)">
-        🤖 Wonderlus商城钱包
+        ☁️ Wonderlus商城
         <span>▶</span>
       </div>
       <div class="module-content">
-        <p>你的余额：0.00 MYR</p>
-        <p>商城钱包可与Wonderlus钱包共享余额</p>
+        <p>未绑定付款方式</p>
       </div>
     </div>
 
-    <div class="module">
-      <div class="module-header" onclick="toggleModule(this)">
-        🎮 Wonderlus+
-        <span>▶</span>
-      </div>
-      <div class="module-content">
-        <p>享有1.5倍购买积分</p>
-      </div>
-    </div>
   </div>
 
   <script>
