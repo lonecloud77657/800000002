@@ -112,6 +112,12 @@
 <body>
   <div class="sidebar">
     <h2>Wonderlus用户中心</h2>
+    <p style="font-size: 20px; margin: 0; line-height: 1.2; font-weight: bold">
+  <span style="color: white;">欢迎回来，</span>
+</p>
+    <p style="font-size: 18px; margin: 0; line-height: 1.2; font-weight: bold">
+  <span style="color: grey;" id="chrom">新阳</span>
+</p>
     <a href="index.html" class="nav-item">🏠<span>账户</span></a>
     <a href="info.html" class="nav-item active">👤<span>您的信息</span></a>
     <a href="subscription.html" class="nav-item">💳<span>订阅</span></a>
@@ -123,6 +129,7 @@
 
   <div class="content">
     <div class="notice">⚠️ 用户中心目前处于Beta测试中，一切内容不代表最终结果</div>
+    <div class="notice">Ad：购买Rank获得更多个性化功能</div>
 
     <div class="module open">
       <div class="module-header" onclick="toggleModule(this)">
@@ -130,32 +137,21 @@
         <span>▼</span>
       </div>
       <div class="module-content">
-        <p>用户名：xinyang</p>
-        <p>邮箱1：xxxxxx@gmail.com</p>
-        <p>邮箱2：无</p>
-        <p>积分：770</p>
+        <p style="font-size: 16px; color: white;">
+  <span style="color: white;">用户名：</span>w
+</p>
+        <p style="font-size: 16px; color: grey;">
+  <span style="color: white;">Rank：</span>Default
+</p>
+        <p>邮箱1：Waiting For Input</p>
+        <p>邮箱2：None</p>
+        <p>积分：70</p>
+        <p>Cumulative Score：70</p>
       </div>
     </div>
 
-    <div class="module open">
-      <div class="module-header" onclick="toggleModule(this)">
-        🎮 Honkai: Star Rail材料与信息
-        <span>▶</span>
-      </div>
-      <div class="module-content">
-        <p>FB登入</p>
-      </div>
-    </div>
 
-    <div class="module">
-      <div class="module-header" onclick="toggleModule(this)">
-        🎮 Genshin Impact材料与信息
-        <span>▶</span>
-      </div>
-      <div class="module-content">
-        <p>无任何信息</p>
-      </div>
-    </div>
+
 
     <div class="module">
       <div class="module-header" onclick="toggleModule(this)">
@@ -175,6 +171,74 @@
       const arrow = header.querySelector('span');
       arrow.textContent = module.classList.contains('open') ? '▼' : '▶';
     }
+
+    function applyChromaWithColors(id, colors, speed = 0.1) {
+      const textElement = document.getElementById(id);
+      if (!textElement) return;
+
+      const text = textElement.textContent;
+      textElement.textContent = '';
+
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        textElement.appendChild(span);
+      }
+
+      let hue = 0;
+
+      function updateColors() {
+        hue = (hue + speed) % colors.length;
+        const spans = textElement.querySelectorAll('span');
+        spans.forEach((span, index) => {
+          const colorIndex = Math.floor(index + hue) % colors.length;
+          span.style.color = colors[colorIndex];
+        });
+        requestAnimationFrame(updateColors);
+      }
+      updateColors();
+    }
+
+    // 自定义颜色数组
+    const myColors = [
+      '#FF0000', // 红
+      '#FFA500', // 橙
+      '#FFFF00', // 黄
+      '#00FF00', // 绿
+      '#00FFFF', // 青
+      '#0000FF', // 蓝
+      '#800080'  // 紫
+    ];
+
+    // 调用函数，设置慢速速度（例如 0.1）
+    applyChromaWithColors('rainbow', myColors, 0.15);
+
+
+
+
+    const textElement = document.getElementById('chroma');
+    const text = textElement.textContent;
+    textElement.textContent = '';
+
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      textElement.appendChild(span);
+    }
+
+    let hue = 0;
+    const speed = 3; // 越大越快
+
+    function updateColors() {
+      hue = (hue + speed) % 360; // 每帧直接跳 speed 步
+      const spans = textElement.querySelectorAll('span');
+      spans.forEach((span, index) => {
+        const letterHue = (hue + index * 15) % 360;
+        span.style.color = `hsl(${letterHue}, 100%, 50%)`;
+      });
+      requestAnimationFrame(updateColors);
+    }
+    updateColors();
   </script>
 </body>
 </html>

@@ -112,9 +112,17 @@
 <body>
   <div class="sidebar">
     <h2>Wonderlus用户中心</h2>
+    <p style="font-size: 20px; margin: 0; line-height: 1.2; font-weight: bold">
+  <span style="color: white;">欢迎回来，</span>
+</p>
+    <p style="font-size: 18px; margin: 0; line-height: 1.2; font-weight: bold">
+  <span style="color: grey;" id="chrom">新阳</span>
+</p>
+
+
     <a href="index.html" class="nav-item active">🏠<span>账户</span></a>
     <a href="info.html" class="nav-item">👤<span>您的信息</span></a>
-    <a href="subscription.html" class="nav-item">💳<span>订阅</span></a>
+    <a href="subscription" class="nav-item">💳<span>订阅</span></a>
     <a href="security.html" class="nav-item">🔒<span>安全</span></a>
     <a href="privacy.html" class="nav-item">🕵️<span>隐私</span></a>
     <a href="payment.html" class="nav-item">💰<span>付款选项</span></a>
@@ -123,7 +131,7 @@
 
   <div class="content">
     <div class="notice">⚠️ 用户中心目前处于Beta测试中，一切内容不代表最终结果</div>
-    <div class="notice">Ad：订阅Wonderlus+ 以享有更多优惠</div>
+    <div class="notice">Ad：购买Rank获得更多个性化功能</div>
 
     <div class="module open">
       <div class="module-header" onclick="toggleModule(this)">
@@ -131,41 +139,28 @@
         <span>▼</span>
       </div>
       <div class="module-content">
-        <p>你的余额：0.00 MYR</p>
-        <p>若要添加余额，请联络alone102403</p>
+        <p>你的余额：41.00 MYR</p>
       </div>
     </div>
 
-    <div class="module open">
-      <div class="module-header" onclick="toggleModule(this)">
-        ☁️ Honkai: Star Rail订阅
-        <span>▶</span>
-      </div>
-      <div class="module-content">
-        <p>00:00 23/5/2025 - 23:59 23/6/2025</p>
-      </div>
-    </div>
+
+
 
     <div class="module">
       <div class="module-header" onclick="toggleModule(this)">
-        🤖 Wonderlus商城钱包
+        ➕ Rank Colour
         <span>▶</span>
       </div>
       <div class="module-content">
-        <p>你的余额：0.00 MYR</p>
-        <p>商城钱包可与Wonderlus钱包共享余额</p>
+        <p style="font-weight: bold">Currently Working</p>
+        <p>Grey</p>
+        <p>-------------------------------------------------------------------------------------------------------------------</p>
+        <p style="font-weight: bold">Owned Colour</p>
+        <p>Grey</p>
       </div>
     </div>
 
-    <div class="module">
-      <div class="module-header" onclick="toggleModule(this)">
-        🎮 Wonderlus+
-        <span>▶</span>
-      </div>
-      <div class="module-content">
-        <p>享有1.5倍购买积分</p>
-      </div>
-    </div>
+    
   </div>
 
   <script>
@@ -175,6 +170,77 @@
       const arrow = header.querySelector('span');
       arrow.textContent = module.classList.contains('open') ? '▼' : '▶';
     }
+
+
+
+
+    function applyChromaWithColors(id, colors, speed = 0.1) {
+      const textElement = document.getElementById(id);
+      if (!textElement) return;
+
+      const text = textElement.textContent;
+      textElement.textContent = '';
+
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        textElement.appendChild(span);
+      }
+
+      let hue = 0;
+
+      function updateColors() {
+        hue = (hue + speed) % colors.length;
+        const spans = textElement.querySelectorAll('span');
+        spans.forEach((span, index) => {
+          const colorIndex = Math.floor(index + hue) % colors.length;
+          span.style.color = colors[colorIndex];
+        });
+        requestAnimationFrame(updateColors);
+      }
+      updateColors();
+    }
+
+    // 自定义颜色数组
+    const myColors = [
+      '#FF0000', // 红
+      '#FFA500', // 橙
+      '#FFFF00', // 黄
+      '#00FF00', // 绿
+      '#00FFFF', // 青
+      '#0000FF', // 蓝
+      '#800080'  // 紫
+    ];
+
+    // 调用函数，设置慢速速度（例如 0.1）
+    applyChromaWithColors('rainbow', myColors, 0.15);
+
+
+
+
+    const textElement = document.getElementById('chroma');
+    const text = textElement.textContent;
+    textElement.textContent = '';
+
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      textElement.appendChild(span);
+    }
+
+    let hue = 0;
+    const speed = 3; // 越大越快
+
+    function updateColors() {
+      hue = (hue + speed) % 360; // 每帧直接跳 speed 步
+      const spans = textElement.querySelectorAll('span');
+      spans.forEach((span, index) => {
+        const letterHue = (hue + index * 15) % 360;
+        span.style.color = `hsl(${letterHue}, 100%, 50%)`;
+      });
+      requestAnimationFrame(updateColors);
+    }
+    updateColors();
   </script>
 </body>
 </html>

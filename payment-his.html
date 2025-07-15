@@ -111,14 +111,20 @@
 </head>
 <body>
   <div class="sidebar">
-    <h2>用户中心</h2>
-    <a href="index.html" class="nav-item active">🏠<span>账户</span></a>
+    <h2>Wonderlus用户中心</h2>
+        <p style="font-size: 20px; margin: 0; line-height: 1.2; font-weight: bold">
+  <span style="color: white;">欢迎回来，</span>
+</p>
+    <p style="font-size: 18px; margin: 0; line-height: 1.2; font-weight: bold">
+  <span style="color: grey;" id="chrom">新阳</span>
+</p>
+    <a href="index.html" class="nav-item">🏠<span>账户</span></a>
     <a href="info.html" class="nav-item">👤<span>您的信息</span></a>
     <a href="subscription.html" class="nav-item">💳<span>订阅</span></a>
     <a href="security.html" class="nav-item">🔒<span>安全</span></a>
     <a href="privacy.html" class="nav-item">🕵️<span>隐私</span></a>
     <a href="payment.html" class="nav-item">💰<span>付款选项</span></a>
-    <a href="payment-his.html" class="nav-item">📜<span>历史记录</span></a>
+    <a href="payment-his.html" class="nav-item active">📜<span>历史记录</span></a>
   </div>
 
   <div class="content">
@@ -130,10 +136,7 @@
         <span>▼</span>
       </div>
       <div class="module-content">
-        <p><strong>21/5/2025 订阅中心</strong> - HSR月卡 - MYR19.00 - 积分：+190</p>
-        <p><strong>12/3/2025 订阅中心</strong> - Pro订阅  - MYR20.00 - 积分：+200</p>
-        <p><strong>21/4/2025 订阅中心</strong> - HSR月卡 - MYR19.00 - 积分：+190</p>
-        <p><strong>12/3/2025 订阅中心</strong> - HSR月卡 - MYR19.00 - 积分：+190</p>
+        <p><strong>14/7/2025 商城中心</strong> - Mixue: Passion fruit bubble tea + Service fee - MYR7.00 - Score：+70</p>
       </div>
     </div>
 
@@ -143,10 +146,6 @@
         <span>▶</span>
       </div>
       <div class="module-content">
-        <p><strong>21/5/2025 订阅中心</strong> - HSR月卡 - MYR19.00 - 积分：+190</p>
-        <p><strong>12/3/2025 订阅中心</strong> - Pro订阅  - MYR20.00 - 积分：+200</p>
-        <p><strong>21/4/2025 订阅中心</strong> - HSR月卡 - MYR19.00 - 积分：+190</p>
-        <p><strong>12/3/2025 订阅中心</strong> - HSR月卡 - MYR19.00 - 积分：+190</p>
       </div>
     </div>
 
@@ -156,7 +155,7 @@
         <span>▶</span>
       </div>
       <div class="module-content">
-        <p>无内容</p>
+        <p><strong>14/7/2025</strong> - Mixue: Passion fruit bubble tea + Service fee - MYR7.00 - Score：+70</p>
       </div>
     </div>
   </div>
@@ -168,6 +167,74 @@
       const arrow = header.querySelector('span');
       arrow.textContent = module.classList.contains('open') ? '▼' : '▶';
     }
+
+    function applyChromaWithColors(id, colors, speed = 0.1) {
+      const textElement = document.getElementById(id);
+      if (!textElement) return;
+
+      const text = textElement.textContent;
+      textElement.textContent = '';
+
+      for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        textElement.appendChild(span);
+      }
+
+      let hue = 0;
+
+      function updateColors() {
+        hue = (hue + speed) % colors.length;
+        const spans = textElement.querySelectorAll('span');
+        spans.forEach((span, index) => {
+          const colorIndex = Math.floor(index + hue) % colors.length;
+          span.style.color = colors[colorIndex];
+        });
+        requestAnimationFrame(updateColors);
+      }
+      updateColors();
+    }
+
+    // 自定义颜色数组
+    const myColors = [
+      '#FF0000', // 红
+      '#FFA500', // 橙
+      '#FFFF00', // 黄
+      '#00FF00', // 绿
+      '#00FFFF', // 青
+      '#0000FF', // 蓝
+      '#800080'  // 紫
+    ];
+
+    // 调用函数，设置慢速速度（例如 0.1）
+    applyChromaWithColors('rainbow', myColors, 0.15);
+
+
+
+
+    const textElement = document.getElementById('chroma');
+    const text = textElement.textContent;
+    textElement.textContent = '';
+
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      textElement.appendChild(span);
+    }
+
+    let hue = 0;
+    const speed = 3; // 越大越快
+
+    function updateColors() {
+      hue = (hue + speed) % 360; // 每帧直接跳 speed 步
+      const spans = textElement.querySelectorAll('span');
+      spans.forEach((span, index) => {
+        const letterHue = (hue + index * 15) % 360;
+        span.style.color = `hsl(${letterHue}, 100%, 50%)`;
+      });
+      requestAnimationFrame(updateColors);
+    }
+    updateColors();
   </script>
 </body>
 </html>
